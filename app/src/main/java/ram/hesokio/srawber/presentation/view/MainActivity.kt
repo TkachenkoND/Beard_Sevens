@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import com.appsflyer.AppsFlyerConversionListener
 import com.appsflyer.AppsFlyerLib
@@ -15,11 +15,13 @@ import com.onesignal.OneSignal
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ram.hesokio.srawber.R
 import ram.hesokio.srawber.databinding.MainActivityBinding
 import ram.hesokio.srawber.domain.CheckNetwork
 import ram.hesokio.srawber.domain.MyOneSignal
 import ram.hesokio.srawber.domain.Parsing
 import ram.hesokio.srawber.domain.WorkWithSharedPref
+import ram.hesokio.srawber.presentation.view.game_view.progress_bar.FProgress
 import ram.hesokio.srawber.presentation.view_model.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -122,13 +124,13 @@ class MainActivity : AppCompatActivity() {
     private fun startGameView() {
         OneSignal.sendTag("key1", "bot")
 
-        Toast.makeText(this, "запускаємо гру !!", Toast.LENGTH_SHORT).show()
-        //startActivity(Intent(this, ActivityProgressBar::class.java))
-        //finish()
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            replace(R.id.frgmContainer, FProgress())
+        }
     }
 
     private fun startWebView(url: String) {
-        Toast.makeText(this, "запускаємо вебку!!", Toast.LENGTH_SHORT).show()
 
         if (url.isNotEmpty()) {
             startActivity(Intent(this, ViewWebka::class.java).putExtra("url", url))

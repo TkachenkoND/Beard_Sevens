@@ -11,4 +11,8 @@
     <color name="colorPrimaryDark">#B0B659</color>
     <color name="colorAccent">#B0B659</color>
     <color name="colorPrimary">#B0B659</color>
+
+    <color name="menuButtonStart">#BF8E45</color>
+    <color name="menuButtonFinish">#3E1C65</color>
+    <color name="pgBar">#651C1C</color>
 </resources>

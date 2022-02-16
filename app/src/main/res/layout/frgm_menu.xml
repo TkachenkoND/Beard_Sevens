@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/m_background">
+
+    <TextView
+        android:id="@+id/TMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menuText"
+        android:textColor="@color/black"
+        android:textSize="33sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/BFinish"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BStart" />
+
+    <Button
+        android:id="@+id/BStart"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="200dp"
+        android:backgroundTint="@color/menuButtonStart"
+        android:text="@string/menuButtonStartText"
+        android:textSize="33sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/BFinish"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="150dp"
+        android:backgroundTint="@color/menuButtonFinish"
+        android:text="@string/menuButtonFinishText"
+        android:textSize="33sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BStart" />
+</androidx.constraintlayout.widget.ConstraintLayout>
