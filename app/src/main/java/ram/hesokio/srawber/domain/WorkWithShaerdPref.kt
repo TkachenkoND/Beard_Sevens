@@ -17,7 +17,7 @@ class WorkWithSharedPref(context: Context) {
     private fun saveFullLinkInShared() {
         val editor: SharedPreferences.Editor = shared.edit()
 
-        editor.putString(LINK, "https://trident.website/JwWzw8rf")//вставити нову лінку для цього проекту!!!
+        editor.putString(LINK, "https://trident.website/tMsrTdBb")
         editor.apply()
 
         editor.putString(APSS_KEY, "JuCZJayajy82MSWXymXARW")
