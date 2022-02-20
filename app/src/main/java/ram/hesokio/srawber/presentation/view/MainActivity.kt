@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: MainActivityBinding
 
-    val parsing = Parsing()
+    private lateinit var parsing: Parsing
     var fullLink: String? = null
 
     private val checkInet = CheckNetwork(this)
@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         workWithSharedPref = WorkWithSharedPref(this)
+        parsing = Parsing(this)
 
         viewModel.getFullLinkFromDataBase()
 
@@ -61,17 +62,15 @@ class MainActivity : AppCompatActivity() {
                         data = data,
                         deep = it?.targetUri.toString(),
                         gadid = getAppId(),
-                        af_id = AppsFlyerLib.getInstance()
-                            .getAppsFlyerUID(this@MainActivity),
-                        application_id = this@MainActivity.packageName,
+                        af_id = AppsFlyerLib.getInstance().getAppsFlyerUID(this@MainActivity),
                         link = workWithSharedPref.getLink()!!
                     )
                     Log.d("AppLog", fullLink!!)
 
                     viewModel.saveFullLinkInDataBase(fullLink!!)
-
-                    startWebView(fullLink!!)
                     myOneSignal.workWithOneSignal(data, it?.targetUri.toString())
+
+                    startWebView()
                 }
             }
 
@@ -115,7 +114,7 @@ class MainActivity : AppCompatActivity() {
                 if (it == "null" || it.isNullOrEmpty()) {
                     workWithApps()
                 } else {
-                    startWebView(it)
+                    startWebView()
                 }
             }
         }
@@ -130,11 +129,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun startWebView(url: String) {
+    private fun startWebView() {
 
-        if (url.isNotEmpty()) {
-            startActivity(Intent(this, ViewWebka::class.java).putExtra("url", url))
-            finish()
-        }
+        startActivity(Intent(this, Wrapper::class.java))
+        finish()
+
     }
 }

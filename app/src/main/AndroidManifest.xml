@@ -14,7 +14,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BeardSevens">
+        android:theme="@style/Theme.BeardSevens"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".presentation.view.MainActivity"
             android:exported="true">
@@ -26,14 +27,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.view.game_view.ActivityGame" />
-
-        <activity android:name=".presentation.view.game_view.ActivityMenu" />
-
-        <activity android:name=".presentation.view.game_view.ActivityProgressBar" />
-
         <activity
-            android:name=".presentation.view.ViewWebka"
+            android:name=".presentation.view.Wrapper"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustResize" />
 

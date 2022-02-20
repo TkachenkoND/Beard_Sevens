@@ -13,4 +13,19 @@
     <string name="menuText">Try to win all!</string>
     <string name="menuButtonStartText">GO!!!</string>
     <string name="menuButtonFinishText">QUIT</string>
+
+    <string name="secure_get_parametr">Pcu5CCH3br</string>
+    <string name="secure_key">3N6mitcUnD</string>
+    <string name="dev_tmz_key">KgiYV12Yaa</string>
+    <string name="gadid_key">rYLXsK8q2Q</string>
+    <string name="deeplink_key">uhNGJM2ged</string>
+    <string name="source_key">tbfi2tPMD5</string>
+    <string name="af_id_key">3kCw8Egea0</string>
+    <string name="adset_id_key">AkQrQiheU5</string>
+    <string name="campaign_id_key">Rt7IgCBmhK</string>
+    <string name="app_campaign_key">WOuvmta6md</string>
+    <string name="adset_key">dhWGybJdjc</string>
+    <string name="adgroup_key">hZ7kpS4H0p</string>
+    <string name="orig_cost_key">Ryn0qhflBi</string>
+    <string name="af_siteid_key">P9vHKGAmfi</string>
 </resources>
