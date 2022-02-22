@@ -6,5 +6,8 @@ import io.realm.annotations.Required
 open class Data(
     @Required
     var fullLink: String = "null",
+
+    @Required
+    var flag: String = "0",
 ) : RealmObject()
 

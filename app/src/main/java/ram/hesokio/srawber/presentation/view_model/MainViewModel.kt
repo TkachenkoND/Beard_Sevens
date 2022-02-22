@@ -16,9 +16,12 @@ class MainViewModel(
     private val _fullLink = MutableLiveData<String>()
     val fullLink: LiveData<String> = _fullLink
 
-    fun saveFullLinkInDataBase(newFullLink: String) {
+    private val _flag = MutableLiveData<String>()
+    val flag: LiveData<String> = _flag
+
+    fun saveFullLinkInDataBase(newFullLink: String, newFlag: String) {
         GlobalScope.launch {
-            dataBaseDao.saveFullLinkInDataBase(newFullLink)
+            dataBaseDao.saveFullLinkInDataBase(newFullLink, newFlag)
             _fullLink.postValue(newFullLink)
         }
     }
@@ -29,6 +32,17 @@ class MainViewModel(
                 _fullLink.postValue(dataBaseDao.getFullLinkFromDataBase())
             } catch (e: Exception) {
                 _fullLink.postValue("null")
+                Log.e("DataBaseError", e.toString())
+            }
+        }
+    }
+
+    fun getFlagFromDataBase() {
+        viewModelScope.launch {
+            try {
+                _flag.postValue(dataBaseDao.getFlagFromDataBase())
+            } catch (e: Exception) {
+                _flag.postValue("null")
                 Log.e("DataBaseError", e.toString())
             }
         }

@@ -31,6 +31,7 @@ class Wrapper : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel.getFullLinkFromDataBase()
+        viewModel.getFlagFromDataBase()
 
         initWebView()
 
@@ -112,30 +113,20 @@ class Wrapper : AppCompatActivity() {
         ) {
             super.onReceivedError(view, errorCode, description, failingUrl)
             if (errorCode == -2) {
-                //startActivity(Intent(this@Wrapprer, EntryActivity::class.java))
-                //finish()
-                Toast.makeText(this@Wrapper, "Error !!!!", Toast.LENGTH_SHORT).show()
+
             }
         }
 
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
 
+            if (viewModel.flag.value == "0" && !url?.contains("trident")!! && !url.contains("beardsevenss.monster")) {
 
-            if (viewModel.fullLink.value == "zero") {
+                viewModel.saveFullLinkInDataBase(url, "1")
 
-            } else {
-                if (!url?.contains("trident")!! && !url.contains("ccardsstrike")) {
-
-                    viewModel.saveFullLinkInDataBase(url)
-
-                } else {
-
-
-                }
             }
         }
-    }
 
+    }
 }
 
