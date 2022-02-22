@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Message
+import android.util.Log
 import android.webkit.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -40,8 +41,10 @@ class Wrapper : AppCompatActivity() {
 
     private fun initFullLinkObserver() {
         viewModel.fullLink.observe(this) {
-            if (it != "null")
+            if (it != "null"){
+                Log.d("FullLink",it)
                 webView.loadUrl(it)
+            }
             else
                 Toast.makeText(this@Wrapper, "Error fullLink null !!!!", Toast.LENGTH_SHORT).show()
 

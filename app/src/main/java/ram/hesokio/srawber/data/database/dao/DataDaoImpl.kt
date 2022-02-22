@@ -20,12 +20,16 @@ class DataDaoImpl : DataDao {
 
     override suspend fun getFullLinkFromDataBase(): String {
         val dataBase = Realm.getDefaultInstance()
-        return dataBase.where(Data::class.java).findFirst()!!.fullLink
+        val fullLink = dataBase.where(Data::class.java).findFirst()!!.fullLink
+        dataBase.close()
+        return fullLink
     }
 
 
     override suspend fun getFlagFromDataBase(): String {
         val dataBase = Realm.getDefaultInstance()
-        return dataBase.where(Data::class.java).findFirst()!!.flag
+        val flag = dataBase.where(Data::class.java).findFirst()!!.flag
+        dataBase.close()
+        return flag
     }
 }
