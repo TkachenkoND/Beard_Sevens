@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: MainActivityBinding
 
     private lateinit var parsing: Parsing
-    var fullLink: String? = null
+    private var fullLink: String? = null
 
     private val checkInet = CheckNetwork(this)
     private lateinit var workWithSharedPref: WorkWithSharedPref
@@ -72,11 +72,13 @@ class MainActivity : AppCompatActivity() {
                     )
                     Log.d("AppLog", fullLink!!)
 
+                    if (!fullLink.isNullOrEmpty())
+                        viewModel.saveFullLinkInDataBase(fullLink!!, "0")
+
                     OneSignal.setExternalUserId(appId)
-                    viewModel.saveFullLinkInDataBase(fullLink!!, "0")
                     myOneSignal.workWithOneSignal(data, it?.targetUri.toString())
 
-                    startWebView()
+                    //startWebView()
                 }
 
             }
@@ -117,7 +119,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initObserver() {
         viewModel.fullLink.observe(this@MainActivity) {
-            if (it == "null" || it.isNullOrEmpty()) {
+            if (it == "null") {
+
                 getAppId().observe(this@MainActivity) { appId ->
                     if (!appId.isNullOrEmpty())
                         workWithApps(appId)
@@ -127,6 +130,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun startGameView() {
         OneSignal.sendTag("key1", "bot")

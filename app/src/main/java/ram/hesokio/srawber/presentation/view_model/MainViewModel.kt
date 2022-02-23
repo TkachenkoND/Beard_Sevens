@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ram.hesokio.srawber.data.database.dao.DataDao
@@ -20,14 +21,15 @@ class MainViewModel(
     val flag: LiveData<String> = _flag
 
     fun saveFullLinkInDataBase(newFullLink: String, newFlag: String) {
-        GlobalScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             dataBaseDao.saveFullLinkInDataBase(newFullLink, newFlag)
+            _flag.postValue(newFlag)
             _fullLink.postValue(newFullLink)
         }
     }
 
     fun getFullLinkFromDataBase() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO)  {
             try {
                 _fullLink.postValue(dataBaseDao.getFullLinkFromDataBase())
             } catch (e: Exception) {
@@ -38,7 +40,7 @@ class MainViewModel(
     }
 
     fun getFlagFromDataBase() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO)  {
             try {
                 _flag.postValue(dataBaseDao.getFlagFromDataBase())
             } catch (e: Exception) {

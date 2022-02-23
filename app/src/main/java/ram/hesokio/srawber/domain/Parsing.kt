@@ -17,7 +17,7 @@ class Parsing(private val context: Context) {
 
         return link.toUri().buildUpon().apply {
 
-            appendQueryParameter(context.getString(R.string.secure_get_parametr), "lleBYESoLl")
+            appendQueryParameter(context.getString(R.string.secure_get_parametr), context.getString(R.string.secure_key))
             appendQueryParameter(context.getString(R.string.dev_tmz_key), TimeZone.getDefault().id)
             appendQueryParameter(context.getString(R.string.gadid_key), gadid)
             appendQueryParameter(context.getString(R.string.deeplink_key), deep)

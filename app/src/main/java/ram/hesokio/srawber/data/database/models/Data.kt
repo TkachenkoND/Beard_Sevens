@@ -8,6 +8,6 @@ open class Data(
     var fullLink: String = "null",
 
     @Required
-    var flag: String = "0",
+    var flag: String = "null",
 ) : RealmObject()
 
